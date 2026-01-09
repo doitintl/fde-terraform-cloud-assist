@@ -9,12 +9,12 @@ variable "project_id" {
 }
 
 variable "group_id" {
-  description = "The email address of the Google Group to grant access to (e.g., team@example.com)"
+  description = "The email address of the Google Group to grant access to, in the format ticket-<CASE_ID>@cre.doit-intl.com"
   type        = string
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", var.group_id))
-    error_message = "The group_id must be a valid email address."
+    condition     = can(regex("^ticket-[A-Za-z0-9_-]+@cre\\.doit-intl\\.com$", var.group_id))
+    error_message = "The group_id must match ticket-<CASE_ID>@cre.doit-intl.com."
   }
 }
 
